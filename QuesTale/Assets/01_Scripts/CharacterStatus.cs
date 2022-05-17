@@ -13,20 +13,20 @@ public class CharacterStatus : ScriptableObject
     [SerializeField]
     private float mp;
     [SerializeField]
-    private float ap;
+    private int ap;
     [SerializeField]
     private float attack;
     [SerializeField]
-    private float deffence;
+    private float defence;
     [SerializeField]
     private float speed;
 
     public int Lv { get { return level; } set { level = value; } }
     public float Hp { get { return hp; } set { hp = value; } }
     public float Mp { get { return mp; } set { mp = value; } }
-    public float Ap { get { return ap; } set { ap = value; } }
+    public int Ap { get { return ap; } set { ap = value; } }
     public float Atk { get { return attack; } set { attack = value; } }
-    public float Def { get { return deffence; } set { deffence = value; } }
+    public float Def { get { return defence; } set { defence = value; } }
     public float Spd { get { return speed; } set { speed = value; } }
 
 

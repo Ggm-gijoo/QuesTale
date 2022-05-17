@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 621637089}
   - component: {fileID: 621637088}
   - component: {fileID: 621637087}
+  - component: {fileID: 621637091}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -218,6 +219,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621637091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621637086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dde5c8feffcf15489aecbcef7dfda00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 11400000, guid: 071f4bcbc491acf449c0d77cc2618a90, type: 2}
+  hpNow: 0
+  mpNow: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +422,7 @@ GameObject:
   - component: {fileID: 1015946316}
   - component: {fileID: 1015946315}
   - component: {fileID: 1015946314}
+  - component: {fileID: 1015946318}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -489,6 +506,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1015946318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015946313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dde5c8feffcf15489aecbcef7dfda00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 11400000, guid: 2c963f1eb5a4ec945b73532232af6fe6, type: 2}
+  hpNow: 0
+  mpNow: 0
 --- !u!1 &1093431891
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,11 +550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2d65b0b371f2743a3ae9310883a410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersStatus:
-  - {fileID: 11400000, guid: 2c963f1eb5a4ec945b73532232af6fe6, type: 2}
-  - {fileID: 11400000, guid: bb22af4609d55de40b6f1594e403f7a9, type: 2}
-  - {fileID: 11400000, guid: 957a4d422dc86964a85be196ffe22d00, type: 2}
-  - {fileID: 11400000, guid: 071f4bcbc491acf449c0d77cc2618a90, type: 2}
+  characters:
+  - {fileID: 1015946318}
+  - {fileID: 621637091}
 --- !u!4 &1093431893
 Transform:
   m_ObjectHideFlags: 0
