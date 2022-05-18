@@ -7,6 +7,8 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private CharacterStatus status;
 
+    public CharacterStatus Status { get { return status; } set { status = value; } }
+
     public bool IsDefence { set; get; } = false;
 
     public float StatusSpd

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StatusManager : MonoBehaviour
 {
+
     [Header("플레이어 스테이터스 데이터")]
     [SerializeField]
     private CharacterStatus[] playerStatuses;
@@ -13,5 +14,4 @@ public class StatusManager : MonoBehaviour
     [Header("적 스테이터스 데이터")]
     [SerializeField]
     private CharacterStatus[] enemyStatuses;
-
 }

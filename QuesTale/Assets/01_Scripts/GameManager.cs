@@ -48,7 +48,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void Act() //방어 외의 행동을 할 때
     {
         --characters[index].apNow;
-        Debug.Log("현재 플레이어 : " + index + ", 남은 AP : " + characters[index].apNow);
+        Debug.Log("현재 플레이어 : " + characters[index].name + ", 플레이어의 직업군 : " + characters[index].Status.name + ", 남은 AP : " + characters[index].apNow);
     }
 
     public void Attack() //감안해야 할 것 : 인덱스 + 1의 값이 캐릭터의 수를 넘어가는가? 공격을 받는 상대가 방어를 하고 있는가?
