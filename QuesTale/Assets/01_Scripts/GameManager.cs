@@ -5,6 +5,11 @@ using System.Linq;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [SerializeField]
+    private GameObject skillPanel;
+    [SerializeField]
+    private GameObject actPanel;
+
     public List<CharacterManager> characters = new List<CharacterManager>();
 
     private int index = 0;
@@ -14,6 +19,13 @@ public class GameManager : MonoSingleton<GameManager>
     {
         characterCount = characters.Count;
         characters = characters.OrderByDescending(n => n.StatusSpd).ToList();
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SkillCancel();
+        }
     }
 
     public void TurnChange()
@@ -58,6 +70,22 @@ public class GameManager : MonoSingleton<GameManager>
         }
         TurnChange();
     }
+
+    public void Skill()
+    {
+        actPanel.SetActive(false);
+        skillPanel.SetActive(true);
+    }
+    
+    public void SkillCancel()
+    {
+        if (skillPanel.activeSelf)
+        {
+            skillPanel.SetActive(false);
+            actPanel.SetActive(true);
+        }
+    }
+
     public void Defence()
     {
         characters[index].IsDefence = true;
