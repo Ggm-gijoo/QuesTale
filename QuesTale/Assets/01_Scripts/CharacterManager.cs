@@ -24,17 +24,14 @@ public class CharacterManager : MonoBehaviour
         get => status.Def;
         set => status.Def = value;
     }
-    public int StatusAp
-    {
-        get => status.Ap;
-        set => status.Ap = value;
-    }
     public float hpNow;
     public float mpNow;
+    public float apNow;
 
     private void Start()
     {
         hpNow = status.Hp;
         mpNow = status.Mp;
+        apNow = status.Ap;
     }
 }

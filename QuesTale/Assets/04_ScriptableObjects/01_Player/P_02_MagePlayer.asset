@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceca317a2c1215e479c8c2144f2e686a, type: 3}
   m_Name: P_02_MagePlayer
   m_EditorClassIdentifier: 
+  level: 0
   hp: 100
   mp: 200
+  ap: 5
   attack: 10
-  deffence: 5
+  defence: 70
   speed: 10
