@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: gfgfgf
+  m_Text: <b><color=#0000ff>gaaaa</color></b>
 --- !u!222 &48270028
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -683,8 +683,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 950, y: -50.000183}
-  m_SizeDelta: {x: 1850, y: -700}
+  m_AnchoredPosition: {x: 800, y: -50}
+  m_SizeDelta: {x: 1500, y: -700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &572168344
 MonoBehaviour:
@@ -1673,7 +1673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillPanel: {fileID: 1155599733}
   actPanel: {fileID: 1701965236}
-  TurnText: {fileID: 48270027}
+  turnText: {fileID: 48270027}
   characters:
   - {fileID: 1015946318}
   - {fileID: 621637091}
@@ -1708,7 +1708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1155599734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1819,7 +1819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.38389277, b: 0.2588235, a: 1}
+  m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1827,20 +1827,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 13867caabd03d4f4a9205e98abe38036, type: 3}
-    m_FontSize: 75
+    m_Font: {fileID: 12800000, guid: b9962437ed458f44992df35b5b360830, type: 3}
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "\uBD88\uAF43\uBFC5\uBFC5 (\uC18C\uBAA8 MP 20)\n\uAC00\uC7A5 \uAE30\uCD08\uC801\uC778
-    \uB9C8\uBC95\uC785\uB2C8\uB2E4.\n\uB208 \uC55E\uC758 \uD55C \uC904\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+    m_LineSpacing: 1.2
+  m_Text: "<b><color=#ff4400>\uD30C\uC774\uC5B4\uBCFC</color></b> (\uC18C\uBAA8 MP
+    20)\n<size=50>\uAC00\uC7A5 \uAE30\uCD08\uC801\uC778 \uB9C8\uBC95\uC785\uB2C8\uB2E4.\n<b><color=#FFD800>\uB208
+    \uC55E\uC758 \uD55C \uC904</color></b>\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4.</size>"
 --- !u!222 &1425341659
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1886,8 +1887,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 950, y: -450}
-  m_SizeDelta: {x: 1850, y: -700}
+  m_AnchoredPosition: {x: 800, y: -450}
+  m_SizeDelta: {x: 1500, y: -700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599064744
 MonoBehaviour:
@@ -2008,8 +2009,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 950, y: 350}
-  m_SizeDelta: {x: 1850, y: -700}
+  m_AnchoredPosition: {x: 900, y: 320}
+  m_SizeDelta: {x: 1500, y: -700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1650956254
 MonoBehaviour:
@@ -2068,7 +2069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.08458526, g: 0.10898413, b: 0.1509434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2110,7 +2111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1701965237
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2241,7 +2242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC885\uB2E8\uBCA0\uAE30 (\uC18C\uBAA8 MP 5)\n\uB208 \uC55E\uC758 \uC801\uC744
+  m_Text: "\uC2AC\uB798\uC2DC (\uC18C\uBAA8 MP 5)\n\uB208 \uC55E\uC758 \uC801\uC744
     \uAC15\uD558\uAC8C \uBCA0\uC5B4\uB0C5\uB2C8\uB2E4.\n\uB0AE\uC740 \uD655\uB960\uB85C
     '\uCD9C\uD608'\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
 --- !u!222 &1868851408

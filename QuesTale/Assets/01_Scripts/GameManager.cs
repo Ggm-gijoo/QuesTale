@@ -5,24 +5,26 @@ using System.Linq;
 using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
-{
+{ 
     [SerializeField]
     private GameObject skillPanel;
     [SerializeField]
     private GameObject actPanel;
     [SerializeField]
-    private Text TurnText;
+    private Text turnText;
 
     public List<CharacterManager> characters = new List<CharacterManager>();
 
     private int index = 0;
     private int characterCount;
 
+    private readonly int hashAttack = Animator.StringToHash("Attack");
+
     void Start()
     {
-        TurnText.text = $"{characters[index].name}의 턴";
         characterCount = characters.Count;
         characters = characters.OrderByDescending(n => n.StatusSpd).ToList();
+        TurnText();
     }
     private void Update()
     {
@@ -47,8 +49,7 @@ public class GameManager : MonoSingleton<GameManager>
             if(characters[index].apNow < 9)
             characters[index].apNow++;
 
-
-            TurnText.text = $"{characters[index].name}의 턴";
+            TurnText();
             if (characters[index].CompareTag("Player"))
             {
                 actPanel.SetActive(true);
@@ -63,6 +64,14 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    public void TurnText()
+    {
+        if (characters[index].CompareTag("Player"))
+            turnText.text = $"<b><color=#0000ff>{characters[index].name}</color></b>의 턴";
+        else if (characters[index].CompareTag("Enemy"))
+            turnText.text = $"<b><color=#ff0000>{characters[index].name}</color></b>의 턴";
+    }
+
     public void Act() //방어 외의 행동을 할 때
     {
         --characters[index].apNow;
@@ -73,6 +82,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         print(characters[index].name + "공격!");
         Act();
+        characters[index].anim.SetTrigger(hashAttack);
         if (index + 1 < characterCount)
         {
             if(characters[index + 1].IsDefence)

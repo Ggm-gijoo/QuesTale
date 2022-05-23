@@ -7,6 +7,8 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private CharacterStatus status;
 
+    public Animator anim;
+
     public CharacterStatus Status { get { return status; } set { status = value; } }
 
     public bool IsDefence { set; get; } = false;
@@ -35,5 +37,6 @@ public class CharacterManager : MonoBehaviour
         hpNow = status.Hp;
         mpNow = status.Mp;
         apNow = status.Ap;
+        anim = GetComponent<Animator>();
     }
 }
