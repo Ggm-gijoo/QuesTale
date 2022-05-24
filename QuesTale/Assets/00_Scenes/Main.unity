@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.11105377, g: 0.13098799, b: 0.16037738, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1746,7 +1746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0.03954857, b: 0.2264151, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1842,8 +1842,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1.15
   m_Text: "<b><color=#CC3300>\uD30C\uC774\uC5B4\uBCFC </color></b> <size=50>(\uC18C\uBAA8
-    MP 20)</size>\n<size=55>\uAC00\uC7A5 \uAE30\uCD08\uC801\uC778 \uB9C8\uBC95\uC785\uB2C8\uB2E4.\n<b><color=#FFD800>\uB208
-    \uC55E\uC758 \uD55C \uC904</color></b>\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4.</size>"
+    MP 20)</size>\n<size=55><b><color=#FFD800>\uB208 \uC55E\uC758 \uD55C \uC904</color></b>\uC744
+    \uACF5\uACA9\uD569\uB2C8\uB2E4.\n\uB0AE\uC740 \uD655\uB960\uB85C \uC801\uC5D0\uAC8C
+    <b><color=#cc3300>\uD654\uC0C1</color></b>\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4.</size>"
 --- !u!222 &1425341659
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1949,7 +1950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.11105377, g: 0.13098799, b: 0.16037738, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1986,6 +1987,7 @@ GameObject:
   - component: {fileID: 1650956256}
   - component: {fileID: 1650956255}
   - component: {fileID: 1650956254}
+  - component: {fileID: 1650956257}
   m_Layer: 5
   m_Name: SkillFire
   m_TagString: Untagged
@@ -2071,7 +2073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.11105377, g: 0.13098799, b: 0.16037738, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2096,6 +2098,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650956252}
   m_CullTransparentMesh: 1
+--- !u!95 &1650956257
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650956252}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16d1f0c8203376d428f561a8d6758384, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1701965236
 GameObject:
   m_ObjectHideFlags: 0
