@@ -54,6 +54,7 @@ public class GameManager : MonoSingleton<GameManager>
             {
                 actPanel.SetActive(true);
                 skillPanel.SetActive(false);
+                GameObject[] findEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             }
             else if (characters[index].CompareTag("Enemy"))
             {
