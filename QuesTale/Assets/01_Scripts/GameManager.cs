@@ -12,6 +12,11 @@ public class GameManager : MonoSingleton<GameManager>
     private GameObject actPanel;
     [SerializeField]
     private Text turnText;
+    [SerializeField]
+    private Text actText;
+
+    private GameObject[] enemies;
+    private GameObject[] players;
 
     public List<CharacterManager> characters = new List<CharacterManager>();
 
@@ -19,9 +24,12 @@ public class GameManager : MonoSingleton<GameManager>
     private int characterCount;
 
     private readonly int hashAttack = Animator.StringToHash("Attack");
+    private readonly int hashDie = Animator.StringToHash("Die");
 
     void Start()
     {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        players = GameObject.FindGameObjectsWithTag("Player");
         characterCount = characters.Count;
         characters = characters.OrderByDescending(n => n.StatusSpd).ToList();
         TurnText();
@@ -38,11 +46,14 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if(characters[index].apNow <= 0 || characters[index].IsDefence) //턴을 넘기는 조건, Ap가 0이 되거나 방어를 했을 때
         {
-            print("턴 넘어감!");
             if (index + 1 >= characterCount)
+            {
                 index = 0;
+            }
             else
+            {
                 index++;
+            }
 
             characters[index].IsDefence = false;
 
@@ -54,7 +65,6 @@ public class GameManager : MonoSingleton<GameManager>
             {
                 actPanel.SetActive(true);
                 skillPanel.SetActive(false);
-                GameObject[] findEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             }
             else if (characters[index].CompareTag("Enemy"))
             {
@@ -68,20 +78,20 @@ public class GameManager : MonoSingleton<GameManager>
     public void TurnText()
     {
         if (characters[index].CompareTag("Player"))
-            turnText.text = $"<b><color=#0000ff>{characters[index].name}</color></b>의 턴";
+            turnText.text = $"<b><color=#0000ff>{characters[index].name}</color></b>의 턴\n <size=70>AP {characters[index].apNow}</size>";
         else if (characters[index].CompareTag("Enemy"))
-            turnText.text = $"<b><color=#ff0000>{characters[index].name}</color></b>의 턴";
+            turnText.text = $"<b><color=#ff0000>{characters[index].name}</color></b>의 턴\n <size=70>AP {characters[index].apNow}</size>";
     }
 
     public void Act() //방어 외의 행동을 할 때
     {
         --characters[index].apNow;
-        print("현재 플레이어 : " + characters[index].name + ", 플레이어의 직업군 : " + characters[index].Status.name + ", 남은 AP : " + characters[index].apNow);
+        TurnText();
     }
 
     public void Attack() //감안해야 할 것 : 인덱스 + 1의 값이 캐릭터의 수를 넘어가는가? 공격을 받는 상대가 방어를 하고 있는가?
     {
-        print(characters[index].name + "공격!");
+        actText.text = $"{characters[index].name} 의 공격!";
         Act();
         characters[index].anim.SetTrigger(hashAttack);
         if (index + 1 < characterCount)
@@ -90,6 +100,7 @@ public class GameManager : MonoSingleton<GameManager>
                 characters[index + 1].hpNow -= characters[index].StatusAtk * (100 / characters[index + 1].StatusDef)/2;
             else
                 characters[index + 1].hpNow -= characters[index].StatusAtk * (100 / characters[index + 1].StatusDef);
+
         }
         else
         {
@@ -118,7 +129,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Defence()
     {
-        print(characters[index].name + "는 방어를 시도했다!");
+        actText.text = $"{characters[index].name} 은(는) 방어를 시도했다!";
         characters[index].IsDefence = true;
         StopCoroutine(EnemyAct());
         TurnChange();
@@ -131,16 +142,27 @@ public class GameManager : MonoSingleton<GameManager>
             if (characters[index].CompareTag("Enemy"))
             {
                 yield return new WaitForSeconds(1f);
-                switch (Random.Range(0, 2))
+                if (characters[index].apNow >= 9)
                 {
-                    case 0:
-                        Attack();
-                        break;
-                    case 1:
-                        Defence();
-                        break;
-                    default:
-                        break;
+                    Attack();
+                }
+                else if (characters[index].apNow <= 1)
+                {
+                    Defence();
+                }
+                else
+                {
+                    switch (Random.Range(0, 2))
+                    {
+                        case 0:
+                            Attack();
+                            break;
+                        case 1:
+                            Defence();
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             else yield break;
