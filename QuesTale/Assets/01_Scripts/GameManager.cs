@@ -15,6 +15,9 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private Text actText;
 
+    [SerializeField]
+    BgmManager bgmManager;
+
     private GameObject[] enemies;
     private GameObject[] players;
 
@@ -28,6 +31,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
+        bgmManager.BgmEvent();
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         players = GameObject.FindGameObjectsWithTag("Player");
         characterCount = characters.Count;

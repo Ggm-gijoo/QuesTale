@@ -13,25 +13,13 @@ public class BgmManager : MonoBehaviour
     [SerializeField]
     AudioSource[] bgms;
 
-    int nowEvent;
+    [SerializeField]
+    private int nowEvent = 0;
 
-    public void BgmEvent() //상황에 따라 nowEvent를 바꾸고 bgms[nowEvent]를 플레이하면 스위치문 안 써도 되는데
+    public void BgmEvent()
     {
-        switch(nowEvent)
-        {
-            case (int)BgmType.FIELD:
-                GetComponent<AudioSource>().Stop();
-                bgms[0].Play();
-                break;
-            case (int)BgmType.BATTLE:
-                GetComponent<AudioSource>().Stop();
-                bgms[1].Play();
-                break;
-            case (int)BgmType.WIN:
-                GetComponent<AudioSource>().Stop();
-                bgms[2].Play();
-                break;
-        }
+        //GetComponentInChildren<AudioSource>().Stop();//자식의 오디오소스를 꺼야함
+        bgms[nowEvent].Play();
     }
 
 

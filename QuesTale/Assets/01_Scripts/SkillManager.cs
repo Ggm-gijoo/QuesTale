@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    [SerializeField]
+    private SkillStatus[] skils;
 
 }
