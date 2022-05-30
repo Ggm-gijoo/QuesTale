@@ -31,7 +31,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        bgmManager.BgmEvent();
+        bgmManager.BgmEvent(1);
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         players = GameObject.FindGameObjectsWithTag("Player");
         characterCount = characters.Count;
@@ -43,6 +43,10 @@ public class GameManager : MonoSingleton<GameManager>
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SkillCancel();
+        }
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            bgmManager.BgmEvent(Random.Range(0,2));
         }
     }
 

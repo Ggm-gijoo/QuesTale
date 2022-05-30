@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class BgmManager : MonoBehaviour
 {
-    enum BgmType
-    {
-        FIELD = 0,
-        BATTLE,
-        WIN
-    }
-    [SerializeField]
-    AudioSource[] bgms;
 
-    [SerializeField]
-    private int nowEvent = 0;
+    private AudioSource[] bgms;
 
-    public void BgmEvent()
+    public void BgmEvent(int nowEvent)
     {
-        //GetComponentInChildren<AudioSource>().Stop();//자식의 오디오소스를 꺼야함
-        bgms[nowEvent].Play();
+        bgms = GetComponentsInChildren<AudioSource>(true);
+        print(bgms.Length);
+        for (int i = 0; i < bgms.Length; i++)
+            bgms[i].gameObject.SetActive(false);
+        bgms[nowEvent].gameObject.SetActive(true);
     }
 
 
