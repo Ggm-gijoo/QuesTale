@@ -9,7 +9,12 @@ public class SkillManager : MonoBehaviour
 
     public void OnClickSkill(SkillStatus skill)
     {
-        
+        if (GameManager.Instance.characters[GameManager.Instance.Index].mpNow >= skill.UseMp && GameManager.Instance.characters[GameManager.Instance.Index].apNow >= skill.UseAp)
+        {
+            GameManager.Instance.characters[GameManager.Instance.Index].mpNow -= skill.UseMp;
+            GameManager.Instance.characters[GameManager.Instance.Index].apNow -= skill.UseAp;
+        }
+        else GameManager.Instance.SkillCancel();
     }
 
     public void OnClickSlash() => OnClickSkill(skils[0]);
