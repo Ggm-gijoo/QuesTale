@@ -11,6 +11,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private GameObject actPanel;
     [SerializeField]
+    private GameObject soundEffect;
+    [SerializeField]
     private Text turnText;
     [SerializeField]
     private Text actText;
@@ -20,6 +22,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private GameObject[] enemies;
     private GameObject[] players;
+    private AudioSource[] soundEffects;
 
     public List<CharacterManager> characters = new List<CharacterManager>();
 
@@ -32,6 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         Index = 0;
+        soundEffects = soundEffect.GetComponents<AudioSource>();
         bgmManager.BgmEvent(1);
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -103,6 +107,7 @@ public class GameManager : MonoSingleton<GameManager>
         actText.text = $"{characters[Index].name} ÀÇ °ø°Ý!";
         Act();
         characters[Index].anim.SetTrigger(hashAttack);
+        soundEffects[0].Play();
         if (Index + 1 < characterCount)
         {
             if(characters[Index + 1].IsDefence)

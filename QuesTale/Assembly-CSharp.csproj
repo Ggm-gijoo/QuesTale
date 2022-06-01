@@ -64,7 +64,6 @@
     <Compile Include="Assets\01_Scripts\MonoSingleton.cs" />
     <Compile Include="Assets\01_Scripts\StatusManager.cs" />
     <Compile Include="Assets\01_Scripts\CharacterManager.cs" />
-    <Compile Include="Assets\01_Scripts\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
