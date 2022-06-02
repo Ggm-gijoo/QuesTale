@@ -10,7 +10,6 @@ public class BgmManager : MonoBehaviour
     public void BgmEvent(int nowEvent)
     {
         bgms = GetComponentsInChildren<AudioSource>(true);
-        print(bgms.Length);
         for (int i = 0; i < bgms.Length; i++)
             bgms[i].gameObject.SetActive(false);
         bgms[nowEvent].gameObject.SetActive(true);

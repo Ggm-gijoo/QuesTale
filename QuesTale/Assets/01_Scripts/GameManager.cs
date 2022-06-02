@@ -22,9 +22,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     private GameObject[] enemies;
     private GameObject[] players;
-    private AudioSource[] soundEffects;
+
+    public AudioSource[] soundEffects;
 
     public List<CharacterManager> characters = new List<CharacterManager>();
+
+    public CharacterManager actChar = null;
+    public CharacterManager oppChar = null;
 
     public int Index { private set; get; }
     private int characterCount;
@@ -35,12 +39,19 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         Index = 0;
+
         soundEffects = soundEffect.GetComponents<AudioSource>();
         bgmManager.BgmEvent(1);
+
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         players = GameObject.FindGameObjectsWithTag("Player");
+
         characterCount = characters.Count;
         characters = characters.OrderByDescending(n => n.StatusSpd).ToList();
+
+        actChar = characters[0];
+        oppChar = characters[1];
+
         TurnText();
     }
     private void Update()
@@ -57,29 +68,34 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void TurnChange()
     {
-        if(characters[Index].apNow <= 0 || characters[Index].IsDefence) //턴을 넘기는 조건, Ap가 0이 되거나 방어를 했을 때
+        if(actChar.apNow <= 0 || actChar.IsDefence) //턴을 넘기는 조건, Ap가 0이 되거나 방어를 했을 때
         {
             if (Index + 1 >= characterCount)
-            {
                 Index = 0;
-            }
             else
-            {
                 Index++;
-            }
+            
 
-            characters[Index].IsDefence = false;
+            actChar = characters[Index];
 
-            if(characters[Index].apNow < 9)
-            characters[Index].apNow++;
+            if (Index + 1 >= characterCount)
+                oppChar = characters[0];
+            else
+                oppChar = characters[Index + 1];
+
+
+            actChar.IsDefence = false;
+
+            if(actChar.apNow < 9)
+            actChar.apNow++;
 
             TurnText();
-            if (characters[Index].CompareTag("Player"))
+            if (actChar.CompareTag("Player"))
             {
                 actPanel.SetActive(true);
                 skillPanel.SetActive(false);
             }
-            else if (characters[Index].CompareTag("Enemy"))
+            else if (actChar.CompareTag("Enemy"))
             {
                 actPanel.SetActive(false);
                 skillPanel.SetActive(false);
@@ -90,39 +106,29 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void TurnText()
     {
-        if (characters[Index].CompareTag("Player"))
-            turnText.text = $"<b><color=#0000ff>{characters[Index].name}</color></b>의 턴\n <size=70>AP {characters[Index].apNow}</size>";
-        else if (characters[Index].CompareTag("Enemy"))
-            turnText.text = $"<b><color=#ff0000>{characters[Index].name}</color></b>의 턴\n <size=70>AP {characters[Index].apNow}</size>";
+        if (actChar.CompareTag("Player"))
+            turnText.text = $"<b><color=#0000ff>{actChar.name}</color></b>의 턴\n <size=70>AP {actChar.apNow}</size>";
+        else if (actChar.CompareTag("Enemy"))
+            turnText.text = $"<b><color=#ff0000>{actChar.name}</color></b>의 턴\n <size=70>AP {actChar.apNow}</size>";
     }
 
     public void Act() //방어 외의 행동을 할 때
     {
-        --characters[Index].apNow;
+        --actChar.apNow;
         TurnText();
     }
 
     public void Attack() //감안해야 할 것 : 인덱스 + 1의 값이 캐릭터의 수를 넘어가는가? 공격을 받는 상대가 방어를 하고 있는가?
     {
-        actText.text = $"{characters[Index].name} 의 공격!";
+        actText.text = $"{actChar.name} 의 공격!";
         Act();
-        characters[Index].anim.SetTrigger(hashAttack);
+        actChar.anim.SetTrigger(hashAttack);
         soundEffects[0].Play();
-        if (Index + 1 < characterCount)
-        {
-            if(characters[Index + 1].IsDefence)
-                characters[Index + 1].hpNow -= characters[Index].StatusAtk * (100 / characters[Index + 1].StatusDef)/2;
-            else
-                characters[Index + 1].hpNow -= characters[Index].StatusAtk * (100 / characters[Index + 1].StatusDef);
 
-        }
+        if (oppChar.IsDefence)
+            oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef) / 2;
         else
-        {
-            if (characters[0].IsDefence)
-                characters[0].hpNow -= characters[Index].StatusAtk * (100 / characters[0].StatusDef) / 2;
-            else
-                characters[0].hpNow -= characters[Index].StatusAtk * (100 / characters[0].StatusDef);
-        }
+            oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef);
         TurnChange();
     }
 
@@ -143,24 +149,24 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Defence()
     {
-        actText.text = $"{characters[Index].name} 은(는) 방어를 시도했다!";
-        characters[Index].IsDefence = true;
+        actText.text = $"{actChar.name} 은(는) 방어를 시도했다!";
+        actChar.IsDefence = true;
         StopCoroutine(EnemyAct());
         TurnChange();
     }
 
     public IEnumerator EnemyAct()
     {
-        while(characters[Index].apNow >= 0 || !characters[Index].IsDefence)
+        while(actChar.apNow > 0 || !actChar.IsDefence)
         {
-            if (characters[Index].CompareTag("Enemy"))
+            if (actChar.CompareTag("Enemy"))
             {
                 yield return new WaitForSeconds(1f);
-                if (characters[Index].apNow >= 9)
+                if (actChar.apNow >= 9)
                 {
                     Attack();
                 }
-                else if (characters[Index].apNow <= 1)
+                else if (actChar.apNow <= 1)
                 {
                     Defence();
                 }

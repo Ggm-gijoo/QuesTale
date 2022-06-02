@@ -9,12 +9,28 @@ public class SkillManager : MonoBehaviour
 
     public void OnClickSkill(SkillStatus skill)
     {
-        if (GameManager.Instance.characters[GameManager.Instance.Index].mpNow >= skill.UseMp && GameManager.Instance.characters[GameManager.Instance.Index].apNow >= skill.UseAp)
+        if (GameManager.Instance.actChar.mpNow >= skill.UseMp && GameManager.Instance.actChar.apNow >= skill.UseAp)
         {
-            GameManager.Instance.characters[GameManager.Instance.Index].mpNow -= skill.UseMp;
-            GameManager.Instance.characters[GameManager.Instance.Index].apNow -= skill.UseAp;
+            GameManager.Instance.actChar.mpNow -= skill.UseMp;
+            GameManager.Instance.actChar.apNow -= skill.UseAp;
+
+            float percent = Random.Range(1, 101);
+
+            if (percent >= skill.CritP)
+            {
+                GameManager.Instance.soundEffects[0].Play();
+                GameManager.Instance.oppChar.hpNow -= skill.Power * 0.01f * GameManager.Instance.actChar.StatusAtk * (100 / GameManager.Instance.oppChar.StatusDef);
+            }
+            else
+            {
+                GameManager.Instance.soundEffects[1].Play();
+                GameManager.Instance.oppChar.hpNow -= skill.Power * 0.01f * GameManager.Instance.actChar.StatusAtk * (100 / GameManager.Instance.oppChar.StatusDef) * 2;
+            }
         }
-        else GameManager.Instance.SkillCancel();
+
+        GameManager.Instance.SkillCancel();
+        GameManager.Instance.TurnText();
+        GameManager.Instance.TurnChange();
     }
 
     public void OnClickSlash() => OnClickSkill(skils[0]);
