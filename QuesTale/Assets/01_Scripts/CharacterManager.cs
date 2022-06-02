@@ -28,6 +28,11 @@ public class CharacterManager : MonoBehaviour
         get => status.Def;
         set => status.Def = value;
     }
+    public float StatusCri
+    {
+        get => status.Cri;
+        set => status.Cri = value;
+    }
     public float hpNow;
     public float mpNow;
     public float apNow;

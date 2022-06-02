@@ -120,15 +120,24 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Attack() //감안해야 할 것 : 인덱스 + 1의 값이 캐릭터의 수를 넘어가는가? 공격을 받는 상대가 방어를 하고 있는가?
     {
+        StartCoroutine(AttackTo());
+    }
+
+    private IEnumerator AttackTo()
+    {
         actText.text = $"{actChar.name} 의 공격!";
+        actPanel.SetActive(false);
         Act();
         actChar.anim.SetTrigger(hashAttack);
+        yield return new WaitForSeconds(0.3f);
         soundEffects[0].Play();
 
         if (oppChar.IsDefence)
             oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef) / 2;
         else
             oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef);
+        if(actChar.CompareTag("Player"))
+        actPanel.SetActive(true);
         TurnChange();
     }
 
@@ -161,7 +170,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             if (actChar.CompareTag("Enemy"))
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.7f);
                 if (actChar.apNow >= 9)
                 {
                     Attack();

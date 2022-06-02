@@ -19,6 +19,8 @@ public class CharacterStatus : ScriptableObject
     [SerializeField]
     private float defence;
     [SerializeField]
+    private float crit;
+    [SerializeField]
     private float speed;
 
     public int Lv { get { return level; } set { level = value; } }
@@ -27,6 +29,7 @@ public class CharacterStatus : ScriptableObject
     public int Ap { get { return ap; } set { ap = value; } }
     public float Atk { get { return attack; } set { attack = value; } }
     public float Def { get { return defence; } set { defence = value; } }
+    public float Cri { get { return crit; } set { crit = value; } }
     public float Spd { get { return speed; } set { speed = value; } }
 
 

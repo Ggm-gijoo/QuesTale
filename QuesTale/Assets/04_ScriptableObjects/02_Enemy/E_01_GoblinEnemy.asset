@@ -18,4 +18,5 @@ MonoBehaviour:
   ap: 5
   attack: 15
   defence: 80
+  crit: 15
   speed: 20
