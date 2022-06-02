@@ -70,6 +70,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if(actChar.apNow <= 0 || actChar.IsDefence) //턴을 넘기는 조건, Ap가 0이 되거나 방어를 했을 때
         {
+            StopAllCoroutines();
             if (Index + 1 >= characterCount)
                 Index = 0;
             else
@@ -92,6 +93,7 @@ public class GameManager : MonoSingleton<GameManager>
             TurnText();
             if (actChar.CompareTag("Player"))
             {
+                StopCoroutine(EnemyAct());
                 actPanel.SetActive(true);
                 skillPanel.SetActive(false);
             }
@@ -129,7 +131,6 @@ public class GameManager : MonoSingleton<GameManager>
         actPanel.SetActive(false);
         Act();
         actChar.anim.SetTrigger(hashAttack);
-        yield return new WaitForSeconds(0.3f);
 
         float randomCrit = Random.Range(1, 101);
         if (actChar.StatusCri >= randomCrit)
@@ -151,7 +152,8 @@ public class GameManager : MonoSingleton<GameManager>
             oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef);
         }
 
-        if(actChar.CompareTag("Player"))
+        yield return new WaitForSeconds(0.4f);
+        if (actChar.CompareTag("Player"))
         actPanel.SetActive(true);
         TurnChange();
     }
@@ -186,11 +188,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     public IEnumerator EnemyAct()
     {
-        while(actChar.apNow > 0 || !actChar.IsDefence)
+        while(actChar.apNow >= 0 || !actChar.IsDefence)
         {
             if (actChar.CompareTag("Enemy"))
             {
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(0.6f);
                 if (actChar.apNow >= 9 || oppChar.hpNow <= actChar.StatusAtk)
                 {
                     Attack();
