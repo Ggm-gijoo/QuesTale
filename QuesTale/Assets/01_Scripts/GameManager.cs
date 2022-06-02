@@ -15,7 +15,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private Text turnText;
     [SerializeField]
-    private Text actText;
+    public Text actText;
 
     [SerializeField]
     BgmManager bgmManager;
@@ -130,12 +130,27 @@ public class GameManager : MonoSingleton<GameManager>
         Act();
         actChar.anim.SetTrigger(hashAttack);
         yield return new WaitForSeconds(0.3f);
-        soundEffects[0].Play();
 
-        if (oppChar.IsDefence)
+        float randomCrit = Random.Range(1, 101);
+        if (actChar.StatusCri >= randomCrit)
+        {
+            soundEffects[1].Play();
+            oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef) * 2;
+            actText.text += "\n<color=#FFD800>급소에 맞았다!</color>";
+        }
+
+        else if (oppChar.IsDefence)
+        {
+            soundEffects[0].Play();
             oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef) / 2;
+        }
+
         else
+        {
+            soundEffects[0].Play();
             oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef);
+        }
+
         if(actChar.CompareTag("Player"))
         actPanel.SetActive(true);
         TurnChange();
@@ -164,6 +179,11 @@ public class GameManager : MonoSingleton<GameManager>
         TurnChange();
     }
 
+    public void GameEnd()
+    {
+
+    }
+
     public IEnumerator EnemyAct()
     {
         while(actChar.apNow > 0 || !actChar.IsDefence)
@@ -171,7 +191,7 @@ public class GameManager : MonoSingleton<GameManager>
             if (actChar.CompareTag("Enemy"))
             {
                 yield return new WaitForSeconds(0.7f);
-                if (actChar.apNow >= 9)
+                if (actChar.apNow >= 9 || oppChar.hpNow <= actChar.StatusAtk)
                 {
                     Attack();
                 }

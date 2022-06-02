@@ -7,10 +7,11 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private SkillStatus[] skils;
 
-    public void OnClickSkill(SkillStatus skill)
+    public void OnClickSkill(SkillStatus skill, string skillName)
     {
         if (GameManager.Instance.actChar.mpNow >= skill.UseMp && GameManager.Instance.actChar.apNow >= skill.UseAp)
         {
+            GameManager.Instance.actText.text = $"{GameManager.Instance.actChar.name}의 {skillName}!";
             GameManager.Instance.actChar.mpNow -= skill.UseMp;
             GameManager.Instance.actChar.apNow -= skill.UseAp;
 
@@ -23,6 +24,7 @@ public class SkillManager : MonoBehaviour
             }
             else
             {
+                GameManager.Instance.actText.text += "\n<color=#FFD800>크리티컬!</color>";
                 GameManager.Instance.soundEffects[1].Play();
                 GameManager.Instance.oppChar.hpNow -= skill.Power * 0.01f * GameManager.Instance.actChar.StatusAtk * (100 / GameManager.Instance.oppChar.StatusDef) * 2;
             }
@@ -33,7 +35,7 @@ public class SkillManager : MonoBehaviour
         GameManager.Instance.TurnChange();
     }
 
-    public void OnClickSlash() => OnClickSkill(skils[0]);
-    public void OnClickGuillotine() => OnClickSkill(skils[1]);
-    public void OnClickFireBall() => OnClickSkill(skils[2]);
+    public void OnClickSlash() => OnClickSkill(skils[0], "<color=#203099>슬래시</color>");
+    public void OnClickGuillotine() => OnClickSkill(skils[1], "<color=#880020>처형</color>");
+    public void OnClickFireBall() => OnClickSkill(skils[2], "<color=#CC3300>파이어볼</color>");
 }
