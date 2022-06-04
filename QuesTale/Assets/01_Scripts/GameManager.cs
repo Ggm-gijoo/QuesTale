@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 { 
@@ -64,6 +65,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             bgmManager.BgmEvent(Random.Range(0,2));
         }
+
+        GameEnd();
     }
 
     public void TurnChange()
@@ -137,7 +140,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             soundEffects[1].Play();
             oppChar.hpNow -= actChar.StatusAtk * (100 / oppChar.StatusDef) * 2;
-            actText.text += "\n<color=#FFD800>급소에 맞았다!</color>";
+            actText.text += "\n<color=#FFD800>크리티컬!</color>";
         }
 
         else if (oppChar.IsDefence)
@@ -183,7 +186,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameEnd()
     {
-
+        if(oppChar.hpNow <= 0)
+        {
+            StopAllCoroutines();
+            actPanel.SetActive(false);
+            oppChar.gameObject.SetActive(false);
+            SceneManager.LoadScene("Field");
+        }
     }
 
     public IEnumerator EnemyAct()

@@ -16,7 +16,7 @@ MonoBehaviour:
   hp: 150
   mp: 100
   ap: 5
-  attack: 10
+  attack: 15
   defence: 100
   crit: 10
   speed: 15
