@@ -17,11 +17,12 @@ public class ExpManager : MonoBehaviour
     }
     public void ExpCheck()
     {
-        if(GameManager.Instance.actChar.expNow >= (10 + Mathf.Floor(Mathf.Log10(GameManager.Instance.actChar.statusLv))))
+        Debug.Log(Mathf.Ceil(Mathf.Log(GameManager.Instance.actChar.statusLv)));
+        Debug.Log($"필요한 Exp 양 : {10 + Mathf.Ceil(Mathf.Log(GameManager.Instance.actChar.statusLv) * (GameManager.Instance.actChar.statusLv / 2 + 1))}, 현재 플레이어 레벨 : {GameManager.Instance.actChar.statusLv}");
+        if (GameManager.Instance.actChar.expNow >= (10 + Mathf.Ceil(Mathf.Log(GameManager.Instance.actChar.statusLv) * (GameManager.Instance.actChar.statusLv/2 + 1))))
         {
-            Debug.Log("레벨업 하기 위한 Exp : "+ 10 + Mathf.Floor(Mathf.Log10(GameManager.Instance.actChar.statusLv) * ));
+            GameManager.Instance.actChar.expNow -= (10 + Mathf.Ceil(Mathf.Log(GameManager.Instance.actChar.statusLv) * (GameManager.Instance.actChar.statusLv / 2 + 1)));
             GameManager.Instance.actChar.statusLv++;
-            GameManager.Instance.actChar.expNow = 0;
         }
     }
 }

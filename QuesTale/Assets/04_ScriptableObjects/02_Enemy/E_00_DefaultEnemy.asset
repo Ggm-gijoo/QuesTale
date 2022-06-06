@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceca317a2c1215e479c8c2144f2e686a, type: 3}
   m_Name: E_00_DefaultEnemy
   m_EditorClassIdentifier: 
-  level: 0
+  level: 1
+  exp: 0
   hp: 75
   mp: 100
   ap: 4

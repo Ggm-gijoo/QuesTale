@@ -7,7 +7,7 @@ using UnityEngine;
 public class CharacterStatus : ScriptableObject
 {
     [SerializeField]
-    private int level;
+    private int level = 1;
     [SerializeField]
     private float exp;
     [SerializeField]
