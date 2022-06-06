@@ -33,15 +33,22 @@ public class CharacterManager : MonoBehaviour
         get => status.Cri;
         set => status.Cri = value;
     }
+    public int statusLv
+    {
+        get => status.Lv;
+        set => status.Lv = value;
+    }
     public float hpNow;
     public float mpNow;
     public float apNow;
+    public float expNow;
 
     private void Start()
     {
         hpNow = status.Hp;
         mpNow = status.Mp;
         apNow = status.Ap;
+        expNow = status.Exp;
         anim = GetComponent<Animator>();
     }
 }

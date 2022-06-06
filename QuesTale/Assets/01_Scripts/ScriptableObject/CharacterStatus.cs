@@ -9,6 +9,8 @@ public class CharacterStatus : ScriptableObject
     [SerializeField]
     private int level;
     [SerializeField]
+    private float exp;
+    [SerializeField]
     private float hp;
     [SerializeField]
     private float mp;
@@ -24,6 +26,7 @@ public class CharacterStatus : ScriptableObject
     private float speed;
 
     public int Lv { get { return level; } set { level = value; } }
+    public float Exp { get { return exp; }set { exp = value; } }
     public float Hp { get { return hp; } set { hp = value; } }
     public float Mp { get { return mp; } set { mp = value; } }
     public int Ap { get { return ap; } set { ap = value; } }
