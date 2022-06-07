@@ -27,9 +27,13 @@ public class ExpManager : MonoBehaviour
         Debug.Log($"필요한 Exp 양 : {maxExp}, 현재 플레이어 레벨 : {GameManager.Instance.actChar.statusLv}");
         if (GameManager.Instance.actChar.expNow >= maxExp)
         {
-            maxExp += (Mathf.Ceil(Mathf.Log(GameManager.Instance.actChar.statusLv) * (GameManager.Instance.actChar.statusLv / 2 + 1))) + GameManager.Instance.actChar.statusLv * 2;
             GameManager.Instance.actChar.expNow -= maxExp;
             GameManager.Instance.actChar.statusLv++;
+
+            if (GameManager.Instance.actChar.statusLv >= 5 && GameManager.Instance.actChar.statusLv % 5 == 0)
+                maxExp += ((Mathf.Ceil(Mathf.Log(GameManager.Instance.actChar.statusLv) * (GameManager.Instance.actChar.statusLv / 2 + 1))) + GameManager.Instance.actChar.statusLv * 2) * 5;
+            else
+                maxExp += (Mathf.Ceil(Mathf.Log(GameManager.Instance.actChar.statusLv) * (GameManager.Instance.actChar.statusLv / 2 + 1))) + GameManager.Instance.actChar.statusLv * 2;
         }
     }
 }
